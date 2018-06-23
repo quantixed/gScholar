@@ -27,23 +27,25 @@ hIndex$years_ahead <- hIndex$years_ahead + thisYear
 p1 <- ggplot(pubs, aes(x = rank, y = cites)) +
   geom_line(colour = "orange", alpha = 0.7, size = 2) +
   geom_abline(intercept = 0, slope = 1, linetype = "dashed") +
-  annotate("text", y= max(pubs$cites), x =max(pubs$rank),label=profile$h_index,hjust=1) + labs(x = "Rank", y = "Citations per paper") + theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  annotate("text", y= max(pubs$cites), x =max(pubs$rank),label=profile$h_index,hjust=1) + 
+  labs(x = "Rank", y = "Citations per paper") + 
+  theme(axis.text=element_text(size=20), axis.title=element_text(size=24,face="bold"))
 # Ranked total cites of papers and h slope with h in top right
 p2 <- ggplot(citeByYear, aes(x = year, y = cites)) + 
   geom_col(fill = "blue", alpha = 0.7) + 
   labs(x = "Year", y = "Total Cites") +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  theme(axis.text=element_text(size=20), axis.title=element_text(size=24,face="bold"))
 # Citations per paper versus year published
 p3 <- ggplot(pubs, aes(x = year, y = cites)) + 
   geom_point(colour = "orange", alpha = 0.5, size = 2) + 
   labs(x = "Citations per paper", y = "Year published") + 
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  theme(axis.text=element_text(size=20), axis.title=element_text(size=24,face="bold"))
 # Citations per paper versus year published
 p4 <- ggplot(hIndex, aes(x = years_ahead, y = h_index)) +
   xlim(min(hIndex$years_ahead)-1,max(hIndex$years_ahead)+1) +
   geom_col(alpha = 0.7) + 
   labs(x = "Year", y = "H-index prediction") +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  theme(axis.text=element_text(size=20), axis.title=element_text(size=24,face="bold"))
 # make the grid
 png("scholar.png", width = 1200, height = 1200)
 grid.arrange(p1, p2, p3, p4, nrow = 2)
